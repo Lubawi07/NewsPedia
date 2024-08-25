@@ -7,8 +7,7 @@ class BookMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
+      appBar: AppBar( 
         automaticallyImplyLeading: false,
         elevation: 10.0,
         shadowColor: Colors.black,

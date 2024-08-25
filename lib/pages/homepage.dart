@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:newpedia/models/newsapi.dart';
 import 'package:newpedia/pages/detail.dart';
 import 'package:newpedia/services/apiberita.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -36,7 +37,41 @@ class _HomepageState extends State<Homepage> {
         future: _newsArticles,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(padding: EdgeInsetsDirectional.only(top: 10),
+                  child:  ListTile(
+                    trailing: Container(
+                      width: 90,
+                      height: 130,
+                      color: Colors.white,
+                    ),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 110,
+                          height: 15,
+                          color: Colors.white,
+                        ),
+                        Padding(padding: EdgeInsets.only(top: 5),
+                        child: Container(
+                          width: 200,
+                          height: 50,
+                          color: Colors.white,
+                        ),
+                        ),
+                      ],  
+                    ),
+                  )
+                  );
+                },
+              ),
+            );
           } else if (snapshot.hasError) {
             return Center(child: Text('Gagal menampilkan berita'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -119,7 +154,11 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailPage(article: article)));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailPage(article: article)));
                         },
                       ),
                     );
@@ -135,7 +174,6 @@ class _HomepageState extends State<Homepage> {
 
 AppBar Appbar() {
   return AppBar(
-    backgroundColor: Colors.white,
     automaticallyImplyLeading: false,
     elevation: 10.0,
     shadowColor: Colors.black,
@@ -143,7 +181,9 @@ AppBar Appbar() {
         text: TextSpan(
             text: 'News',
             style: GoogleFonts.poppins(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+              color: Colors.black,
+                fontSize: 20, fontWeight: FontWeight.bold
+                ),
             children: [
           TextSpan(
               text: 'Pedia',
@@ -152,6 +192,9 @@ AppBar Appbar() {
                   fontWeight: FontWeight.bold,
                   color: Colors.blueAccent))
         ])),
+    actions: [
+        IconButton(onPressed: () {}, icon: Icon(Icons.notifications_outlined)),
+    ], 
     centerTitle: true,
   );
 }
