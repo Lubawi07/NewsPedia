@@ -33,15 +33,19 @@ class _SettingPageState extends State<SettingPage> {
               ),
               ListTile(
                 leading: Icon(Icons.language),
-                title: Text('Ganti bahasa'),
+                title: Text('Ganti bahasa', style: GoogleFonts.poppins(),),
               ),
               ListTile(
                 leading: Icon(Icons.lock),
-                title: Text('Reset password'),
+                title: Text('Reset password',style: GoogleFonts.poppins(),),
               ),
               ListTile(
                 leading: Icon(Icons.history),
-                title: Text('Histori'),
+                title: Text('Histori', style: GoogleFonts.poppins(),),
+              ),
+              ListTile(
+                leading: Icon(Icons.notifications),
+                title: Text('Notifikasi', style: GoogleFonts.poppins(),),
               ),
             ],
           ),
@@ -50,6 +54,8 @@ class _SettingPageState extends State<SettingPage> {
 
   AppBar Appbar() {
     return AppBar(
+      elevation: 10.0,
+      shadowColor: Colors.black,
       title: Text(
         'Pengaturan',
         style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500),

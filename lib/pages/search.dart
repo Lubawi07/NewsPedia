@@ -12,9 +12,23 @@ class SearchPage extends StatefulWidget {
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends State<SearchPage> with SingleTickerProviderStateMixin {
+  // Untuk tabbar pada bagian dekat dengan appbar
+  late TabController _tabController;
+  // Untuk mencari berita 
   final TextEditingController _searchController = TextEditingController();
   Future<List<NewsArticle>>? _searchResults;
+
+  // yang vsync : this, ini harus disambungkan dengan with singletickerproviderstatemixin
+  @override
+  void initState() {
+    _tabController = TabController(length: 6, vsync: this);
+    _tabController.addListener((){
+      setState(() {
+      });
+    });
+    super.initState();
+  }
 
   // Fungsi untuk melakukan pencarian
   Future<void> _performSearch(String query) async {
@@ -29,6 +43,18 @@ class _SearchPageState extends State<SearchPage> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+            bottom: TabBar(
+              isScrollable: true,
+              controller: _tabController,
+              tabAlignment: TabAlignment.start,
+              tabs: [
+                Tab(text: 'Semua',),
+                Tab(text: 'Gaming'),
+                Tab(text: 'Teknologi'),
+                Tab(text: 'Olahraga'),
+                Tab(text: 'Kesehatan'),
+                Tab(text: 'Hiburan'),
+            ]),
             automaticallyImplyLeading: false,
             toolbarHeight: 80,
             // pinned  digunakan untuk menentukan ketika appbar nya menghilang berarti false dan ketika appbanrya akan terlihat ketika discroll bawah atas (true)
@@ -47,9 +73,9 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                   hintText: "Cari berita hari ini... ",
                   hintStyle: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      ),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 keyboardType: TextInputType.text,
                 onSubmitted: (value) {
@@ -60,49 +86,54 @@ class _SearchPageState extends State<SearchPage> {
           ),
           _searchResults == null
               ? SliverFillRemaining(
-                  child: Center(child: Text('Search for news')),
-                )
+                  child: Column(
+                  children: [
+                    
+                  ],
+                ))
               : FutureBuilder<List<NewsArticle>>(
                   future: _searchResults,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return SliverFillRemaining(
                         child: Center(
-                          child:Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return Padding(padding: EdgeInsetsDirectional.only(top: 10),
-                            child:  ListTile(
-                              trailing: Container(
-                                width: 90,
-                                height: 130,
-                                color: Colors.white,
-                              ),
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 110,
-                                    height: 15,
-                                    color: Colors.white,
-                                  ),
-                                  Padding(padding: EdgeInsets.only(top: 5),
-                                  child: Container(
-                                    width: 200,
-                                    height: 50,
-                                    color: Colors.white,
-                                  ),
-                                  ),
-                                ],  
-                              ),
-                            )
-                            );
-                          },
-                        ),
-                      )),
+                            child: Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: ListView.builder(
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                  padding: EdgeInsetsDirectional.only(top: 10),
+                                  child: ListTile(
+                                    trailing: Container(
+                                      width: 90,
+                                      height: 130,
+                                      color: Colors.white,
+                                    ),
+                                    title: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: 110,
+                                          height: 15,
+                                          color: Colors.white,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: Container(
+                                            width: 200,
+                                            height: 50,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
+                            },
+                          ),
+                        )),
                       );
                     } else if (snapshot.hasError) {
                       return SliverFillRemaining(

@@ -10,7 +10,6 @@ class NewsService {
   // GET DATA
   Future<List<NewsArticle>> fetchNews() async {
     final response = await http.get(Uri.parse('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=373aeb0d4e29409bae6c0eb6ecb12f78'));
-
     if (response.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(response.body);
       List<dynamic> body = json['articles'];

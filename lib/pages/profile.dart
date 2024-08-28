@@ -60,9 +60,8 @@ class Profile extends StatelessWidget {
                     fontSize: 12, fontWeight: FontWeight.w500),
               ),
               onTap: () {
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context)=>SettingPage())
-                );
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingPage()));
                 print("Menekan pengaturan");
               },
               trailing: Icon(Icons.keyboard_arrow_right),
@@ -122,6 +121,17 @@ class Profile extends StatelessWidget {
                     fontSize: 12, fontWeight: FontWeight.w500),
               ),
               onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Wrap(
+                        children: [
+                          ListTile(
+                            title: Text('NewsPedia versi : 1.0'),
+                          )
+                        ],
+                      );
+                    });
                 print("Menekan tentang aplikasi");
               },
               trailing: Icon(Icons.keyboard_arrow_right),
