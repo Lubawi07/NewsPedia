@@ -17,7 +17,7 @@ class DetailPage extends StatelessWidget {
         mode: LaunchMode.externalApplication
       );
     } else {
-      throw 'Could not launch $url';
+      throw 'Tidak dapat membuka $url';
     }
   }
 
@@ -129,6 +129,12 @@ class DetailPage extends StatelessWidget {
 
   AppBar Appbar() {
     return AppBar(
+      actions: [
+        IconButton(
+          onPressed: (){
+          }, 
+        icon: Icon(Icons.more_vert))
+      ],
       elevation: 10.0,
       shadowColor: Colors.black,
       title: Text("Detail Berita",

@@ -41,7 +41,7 @@ class Profile extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     "Edit",
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: Colors.blue),
                   )),
             ),
           ),

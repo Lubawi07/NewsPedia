@@ -21,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             Padding(padding: EdgeInsets.only(top: 65),
               child: Center(
-                child: Text('Login', style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),),
+                child: Text('Daftar', style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),),
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 20, right: 10, left: 10),
@@ -29,9 +29,9 @@ class _RegisterPageState extends State<RegisterPage> {
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 labelText: 'Username',
-                labelStyle: GoogleFonts.poppins(),
+                labelStyle: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),
                 hintText: 'Masukkkan username',
-                hintStyle: GoogleFonts.poppins(),
+                hintStyle: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -44,9 +44,9 @@ class _RegisterPageState extends State<RegisterPage> {
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.email),
                 labelText: 'Email',
-                labelStyle: GoogleFonts.poppins(),
+                labelStyle: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),
                 hintText: 'Masukkkan email',
-                hintStyle: GoogleFonts.poppins(),
+                hintStyle: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -59,9 +59,9 @@ class _RegisterPageState extends State<RegisterPage> {
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.password),
                 labelText: 'Password',
-                labelStyle: GoogleFonts.poppins(),
+                labelStyle: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),
                 hintText: 'Masukkkan password',
-                hintStyle: GoogleFonts.poppins(),
+                hintStyle: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -76,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     context, MaterialPageRoute(builder: (context) => Nav()));
               },
               child: Text(
-                "Login",
+                "Daftar",
                 style: GoogleFonts.poppins(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all(Size(370, 50)),
-                backgroundColor: MaterialStatePropertyAll(Colors.blueAccent),
+                backgroundColor: MaterialStatePropertyAll(Colors.green),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -96,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             Padding(padding: EdgeInsets.only(top: 20, right: 10, left: 10),
             child: Center(
-              child: Text('Atau menggunakan', style: GoogleFonts.poppins(fontSize: 15),),),
+              child: Text('Atau menggunakan', style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),),),
             ),
             Padding(padding: EdgeInsets.only(top: 10, right: 10, left: 10),
             child: FilledButton.icon(

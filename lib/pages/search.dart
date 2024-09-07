@@ -12,20 +12,22 @@ class SearchPage extends StatefulWidget {
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> with SingleTickerProviderStateMixin {
+class _SearchPageState extends State<SearchPage>
+    with SingleTickerProviderStateMixin {
   // Untuk tabbar pada bagian dekat dengan appbar
   late TabController _tabController;
-  // Untuk mencari berita 
+  // Untuk mencari berita
   final TextEditingController _searchController = TextEditingController();
   Future<List<NewsArticle>>? _searchResults;
+
+  final _Clearcontroller = TextEditingController();
 
   // yang vsync : this, ini harus disambungkan dengan with singletickerproviderstatemixin
   @override
   void initState() {
     _tabController = TabController(length: 6, vsync: this);
-    _tabController.addListener((){
-      setState(() {
-      });
+    _tabController.addListener(() {
+      setState(() {});
     });
     super.initState();
   }
@@ -44,17 +46,19 @@ class _SearchPageState extends State<SearchPage> with SingleTickerProviderStateM
         slivers: <Widget>[
           SliverAppBar(
             bottom: TabBar(
-              isScrollable: true,
-              controller: _tabController,
-              tabAlignment: TabAlignment.start,
-              tabs: [
-                Tab(text: 'Semua',),
-                Tab(text: 'Gaming'),
-                Tab(text: 'Teknologi'),
-                Tab(text: 'Olahraga'),
-                Tab(text: 'Kesehatan'),
-                Tab(text: 'Hiburan'),
-            ]),
+                isScrollable: true,
+                controller: _tabController,
+                tabAlignment: TabAlignment.start,
+                tabs: [
+                  Tab(
+                    text: 'Semua',
+                  ),
+                  Tab(text: 'Gaming'),
+                  Tab(text: 'Teknologi'),
+                  Tab(text: 'Olahraga'),
+                  Tab(text: 'Kesehatan'),
+                  Tab(text: 'Hiburan'),
+                ]),
             automaticallyImplyLeading: false,
             toolbarHeight: 80,
             // pinned  digunakan untuk menentukan ketika appbar nya menghilang berarti false dan ketika appbanrya akan terlihat ketika discroll bawah atas (true)
@@ -64,7 +68,8 @@ class _SearchPageState extends State<SearchPage> with SingleTickerProviderStateM
               child: TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
-                  suffixIcon: IconButton(
+                  suffixIcon: 
+                  IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.mic_outlined),
                   ),
@@ -87,9 +92,7 @@ class _SearchPageState extends State<SearchPage> with SingleTickerProviderStateM
           _searchResults == null
               ? SliverFillRemaining(
                   child: Column(
-                  children: [
-                    
-                  ],
+                  children: [],
                 ))
               : FutureBuilder<List<NewsArticle>>(
                   future: _searchResults,
@@ -141,7 +144,7 @@ class _SearchPageState extends State<SearchPage> with SingleTickerProviderStateM
                       );
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                       return SliverFillRemaining(
-                        child: Center(child: Text('No results found')),
+                        child: Center(child: Text('Tidak ada hasil')),
                       );
                     } else {
                       return SliverList(

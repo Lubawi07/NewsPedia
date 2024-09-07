@@ -23,6 +23,7 @@ class _HomepageState extends State<Homepage> {
     });
   }
 
+  // Untuk melihat data terkini
   @override
   void initState() {
     super.initState();
@@ -177,23 +178,28 @@ AppBar Appbar() {
     automaticallyImplyLeading: false,
     elevation: 10.0,
     shadowColor: Colors.black,
-    title: RichText(
-        text: TextSpan(
-            text: 'News',
-            style: GoogleFonts.poppins(
-              color: Colors.black,
-                fontSize: 20, fontWeight: FontWeight.bold
-                ),
-            children: [
-          TextSpan(
-              text: 'Pedia',
-              style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent))
-        ])),
+    title: Text('NewsPedia', 
+    style: GoogleFonts.poppins(
+     fontSize: 20, fontWeight: FontWeight.bold
+    ),),
+    // title: RichText(
+    //     text: TextSpan(
+    //         text: 'News',
+    //         style: GoogleFonts.poppins(
+    //           color: Colors.black,
+    //             fontSize: 20, fontWeight: FontWeight.bold
+    //             ),
+    //         children: [
+    //       TextSpan(
+    //           text: 'Pedia',
+    //           style: GoogleFonts.poppins(
+    //               fontSize: 20,
+    //               fontWeight: FontWeight.bold,
+    //               color: Colors.blueAccent))
+    //     ])),
     actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.notifications_outlined)),
+        IconButton(onPressed: () {}, icon: Icon(Icons.notifications_outlined),
+        ),
     ], 
     centerTitle: true,
   );

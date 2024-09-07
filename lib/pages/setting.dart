@@ -9,8 +9,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool isSwitched = false;
-
+  bool isSwitched = false;  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +17,8 @@ class _SettingPageState extends State<SettingPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              ListTile(
+              Padding(padding: EdgeInsets.only(top: 10),
+              child: ListTile(
                 leading: Icon(Icons.dark_mode),
                 title: Text('Mode gelap'),
                 trailing: Switch(
@@ -30,6 +30,7 @@ class _SettingPageState extends State<SettingPage> {
                         isSwitched = value;
                       });
                     }),
+              ),
               ),
               ListTile(
                 leading: Icon(Icons.language),

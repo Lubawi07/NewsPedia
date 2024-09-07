@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -33,10 +34,20 @@ class MyApp extends StatelessWidget {
           '/bookmark': (context) => BookMark(),
           '/profil': (context) => Profile(),
           '/pengaturan': (context) => SettingPage(),
+
           // Auth page
           '/register': (context) => RegisterPage(),
+
+          // Components for navbar 
+          '/navbar' : (context) => Nav(),
         },
         theme: ThemeData(
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: Colors.white,
+            selectedItemColor: Colors.blue,
+            type: BottomNavigationBarType.fixed,
+            unselectedItemColor: Colors.grey,
+          ),
           tabBarTheme: TabBarTheme(
             labelStyle: GoogleFonts.poppins(),
             labelColor: Colors.blue,
@@ -46,12 +57,18 @@ class MyApp extends StatelessWidget {
           ),
           scaffoldBackgroundColor: Colors.white,
           floatingActionButtonTheme:
-              FloatingActionButtonThemeData(backgroundColor: Colors.white),
+          FloatingActionButtonThemeData(backgroundColor: Colors.white),
           appBarTheme: AppBarTheme(color: Colors.white),
           bottomAppBarTheme: BottomAppBarTheme(color: Colors.white),
           brightness: Brightness.light,
         ),
         darkTheme: ThemeData(
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: Colors.black,
+            selectedItemColor: Colors.blue,
+            type: BottomNavigationBarType.fixed,
+            unselectedItemColor: Colors.grey
+          ),
           tabBarTheme: TabBarTheme(
               labelStyle: GoogleFonts.poppins(),
               labelColor: Colors.blue,
@@ -60,7 +77,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           textTheme: TextTheme().apply(displayColor: Colors.white),
           floatingActionButtonTheme:
-              FloatingActionButtonThemeData(backgroundColor: Colors.black),
+            FloatingActionButtonThemeData(backgroundColor: Colors.black),
           appBarTheme: AppBarTheme(color: Colors.black),
           bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
           brightness: Brightness.dark,

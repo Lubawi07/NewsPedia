@@ -7,16 +7,19 @@ class BookMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( 
-        automaticallyImplyLeading: false,
-        elevation: 10.0,
-        shadowColor: Colors.black,
-        title: Text("BookMark", style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),
-        centerTitle: true,
-      ),
+      appBar: Appbar(),
       body: SingleChildScrollView(
-        
       ),
+    );
+  }
+
+  AppBar Appbar() {
+    return AppBar( 
+      automaticallyImplyLeading: false,
+      elevation: 10.0,
+      shadowColor: Colors.black,
+      title: Text("BookMark", style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),
+      centerTitle: true,
     );
   }
 }
