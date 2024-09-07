@@ -1,4 +1,4 @@
-# newpedia
+# NewsPedia
 
 A new Flutter project.
 
