@@ -20,7 +20,6 @@ class NewsService {
       throw Exception("Failed to load news");
     }
   }
-
   //SEARCH DATA
   Future<List<NewsArticle>> searchnews(String query) async {
     final response = await http.get(Uri.parse('$apiUrl/everything?q=$query&apiKey=$apiKey'));

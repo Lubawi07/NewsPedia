@@ -10,6 +10,7 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   bool isSwitched = false;  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

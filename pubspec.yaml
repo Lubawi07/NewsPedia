@@ -48,6 +48,7 @@ dependencies:
   url_launcher: ^6.3.0
   draggable_bottom_sheet: ^1.0.2
   flutter_splash_screen: ^3.0.0
+  drag_and_drop_lists: ^0.4.1
 
 dev_dependencies:
   flutter_test:
