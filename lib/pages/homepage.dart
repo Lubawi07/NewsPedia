@@ -162,6 +162,7 @@ class _HomepageState extends State<Homepage> {
                                       DetailPage(article: article)));
                         },
                       ),
+                      
                     );
                   },
                 ),

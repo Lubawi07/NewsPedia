@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:newpedia/pages/bookmark.dart';
 import 'package:newpedia/pages/homepage.dart';
+import 'package:newpedia/pages/kategori.dart';
 import 'package:newpedia/pages/profile.dart';
 import 'package:newpedia/pages/search.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Nav extends StatefulWidget {
   const Nav({Key? key}) : super(key: key);
@@ -15,6 +15,7 @@ class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     Homepage(),
+    KategoriPage(),
     SearchPage(),
     BookMark(),
     Profile(),
@@ -76,6 +77,10 @@ class _NavState extends State<Nav> {
               label: 'Home',
               icon: Icon(Icons.home_outlined),
             ),
+            BottomNavigationBarItem(
+              label: 'Kategori',
+              icon: Icon(Icons.public)
+              ),
             BottomNavigationBarItem(
               label: 'Cari',
               icon: Icon(Icons.search),

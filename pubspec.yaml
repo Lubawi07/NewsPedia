@@ -49,6 +49,9 @@ dependencies:
   draggable_bottom_sheet: ^1.0.2
   flutter_splash_screen: ^3.0.0
   drag_and_drop_lists: ^0.4.1
+  provider: ^6.1.2
+  shared_preferences: ^2.3.2
+  speech_to_text: ^7.0.0
 
 dev_dependencies:
   flutter_test:

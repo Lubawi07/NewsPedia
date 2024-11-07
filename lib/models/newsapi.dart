@@ -28,7 +28,7 @@ class NewsArticle {
       url: json['url'] ?? "Tidak ada url",
       content: json['content'] ?? "Tidak ada konten",
       publishedAt: json['publishedAt'] != null
-          ? DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.parse(json['publishedAt']))
+          ? DateFormat('dd-MM-yyyy kk:mm a').format(DateTime.parse(json['publishedAt']))
           : 'Tidak ada tanggal publikasi',
     );
   }

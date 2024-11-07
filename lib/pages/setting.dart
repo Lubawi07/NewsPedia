@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newpedia/system/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -9,45 +11,55 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool isSwitched = false;  
-  
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
         appBar: Appbar(),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 10),
-              child: ListTile(
-                leading: Icon(Icons.dark_mode),
-                title: Text('Mode gelap'),
-                trailing: Switch(
-                    activeTrackColor: Colors.blue,
+              Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: SwitchListTile(
                     activeColor: Colors.white,
-                    value: isSwitched,
+                    activeTrackColor: Colors.blue,
+                    secondary: Icon(Icons.dark_mode),
+                    title: Text('Mode gelap'),
+                    value: themeProvider.isDarkMode,
                     onChanged: (value) {
                       setState(() {
-                        isSwitched = value;
+                        themeProvider.toggleTheme();
                       });
-                    }),
-              ),
-              ),
+                    },
+                  )),
               ListTile(
                 leading: Icon(Icons.language),
-                title: Text('Ganti bahasa', style: GoogleFonts.poppins(),),
+                title: Text(
+                  'Ganti bahasa',
+                  style: GoogleFonts.poppins(),
+                ),
               ),
               ListTile(
                 leading: Icon(Icons.lock),
-                title: Text('Reset password',style: GoogleFonts.poppins(),),
+                title: Text(
+                  'Reset password',
+                  style: GoogleFonts.poppins(),
+                ),
               ),
               ListTile(
                 leading: Icon(Icons.history),
-                title: Text('Histori', style: GoogleFonts.poppins(),),
+                title: Text(
+                  'Histori',
+                  style: GoogleFonts.poppins(),
+                ),
               ),
               ListTile(
                 leading: Icon(Icons.notifications),
-                title: Text('Notifikasi', style: GoogleFonts.poppins(),),
+                title: Text(
+                  'Notifikasi',
+                  style: GoogleFonts.poppins(),
+                ),
               ),
             ],
           ),

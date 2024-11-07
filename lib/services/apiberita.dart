@@ -20,6 +20,7 @@ class NewsService {
       throw Exception("Failed to load news");
     }
   }
+
   //SEARCH DATA
   Future<List<NewsArticle>> searchnews(String query) async {
     final response = await http.get(Uri.parse('$apiUrl/everything?q=$query&apiKey=$apiKey'));
@@ -34,6 +35,22 @@ class NewsService {
     }
   }
 
+  //GET DATA BY CATEGORY
+    Future<List<NewsArticle>> fetchNewsByCategory(String category) async {
+    final url = Uri.parse(
+        '$apiUrl/top-headlines?category=$category&apiKey=$apiKey');
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final List<dynamic> articles = data['articles'];
+      return articles.map((json) => NewsArticle.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load news');
+    }
+  }
+}
   // final String apiUrl = 'google-news13.p.rapidapi.com';
   // final String apiKey = 'd33f2f7976msh113c01a5c72bec2p11c268jsn048d5c10e6db';
   // Future<List<NewsArticle>> fetchNews() async {
@@ -50,4 +67,4 @@ class NewsService {
   //     throw Exception("Failed to load news");
   //   }
   // }
-}
+
