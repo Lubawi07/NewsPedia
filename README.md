@@ -2,9 +2,20 @@
 
 ## Installation
 
-Install my-project with npm
+Install my project with command prompt
 
 ```bash
-  npm install my-project
-  cd my-project
+  github clone <my-project>
+  cd <my-project>
+  flutter pub get
 ```
+Remember don't forget create folder first.
+
+Choose the device to run the project in your code editor (vs code).
+
+Run "flutter pub get" for download missing package in this project. After that run the project with 
+
+```bash
+  flutter run
+```
+
