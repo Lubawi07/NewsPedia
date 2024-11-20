@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newpedia/models/newsapi.dart';
+import 'package:newpedia/pages/detail.dart';
 import 'package:newpedia/services/apiberita.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,15 +44,15 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
-      if (_searchController.text.isNotEmpty)
-        IconButton(
-          onPressed: () {
-            _searchController.clear();
-            _searchResults = null;
-            // query = '';
-          },
-          icon: Icon(Icons.clear),
-        ),
+      // if (_searchController.text.isNotEmpty)
+      IconButton(
+        onPressed: () {
+          // _searchController.clear();
+          // _searchResults = null;
+          query = '';
+        },
+        icon: Icon(Icons.clear),
+      ),
     ];
   }
 
@@ -79,7 +80,8 @@ class CustomSearchDelegate extends SearchDelegate {
       future: NewsService().searchnews(query),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(
+          return Center(
+              child: CircularProgressIndicator(
             color: Colors.blue,
           ));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -90,10 +92,87 @@ class CustomSearchDelegate extends SearchDelegate {
             itemBuilder: (context, index) {
               final article = snapshot.data![index];
               return ListTile(
-                title: Text(article.title),
-                subtitle: Text(article.publishedAt),
+                trailing: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: article.urlToImage != null &&
+                          article.urlToImage.isNotEmpty
+                      ? Image.network(
+                          article.urlToImage,
+                          width: 90,
+                          height: 130,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              width: 90,
+                              height: 130,
+                              color: Colors.grey,
+                              child: Center(
+                                child: Text(
+                                  'Invalid argument(s)',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : Container(
+                          width: 90,
+                          height: 130,
+                          color: Colors.grey,
+                          child: Center(
+                            child: Text(
+                              'Gambar tidak tersedia',
+                              style: GoogleFonts.poppins(
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                ),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      article.author,
+                      style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 500,
+                      child: Text(
+                        article.title,
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                subtitle: Padding(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Text(
+                    article.publishedAt,
+                    style: GoogleFonts.poppins(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
                 onTap: () {
-                  close(context, article);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailPage(article: article),
+                    ),
+                  );
                 },
               );
             },
@@ -110,7 +189,8 @@ class CustomSearchDelegate extends SearchDelegate {
         future: loadRecentSearches(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator(
+            return Center(
+                child: CircularProgressIndicator(
               color: Colors.blue,
             ));
           }
@@ -122,6 +202,7 @@ class CustomSearchDelegate extends SearchDelegate {
                 trailing: Icon(Icons.arrow_outward),
                 leading: Icon(Icons.history),
                 title: Text(recentQuery),
+                titleTextStyle: GoogleFonts.poppins(fontSize: 13),
                 onTap: () {
                   query = recentQuery;
                   showResults(context); // Menampilkan hasil pencarian
@@ -137,7 +218,8 @@ class CustomSearchDelegate extends SearchDelegate {
         future: NewsService().searchnews(query),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator(
+            return Center(
+                child: CircularProgressIndicator(
               color: Colors.blue,
             ));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -148,11 +230,12 @@ class CustomSearchDelegate extends SearchDelegate {
               itemBuilder: (context, index) {
                 final article = snapshot.data![index];
                 return ListTile(
+                  leading: Icon(Icons.search),
                   title: Text(article.title),
-                  subtitle: Text(article.publishedAt),
+                  titleTextStyle: GoogleFonts.poppins(fontSize: 13),
                   onTap: () {
-                    close(context,
-                        article); // Tutup pencarian dengan memilih hasil
+                    query = article.title;
+                    showResults(context);
                   },
                 );
               },

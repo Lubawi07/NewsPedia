@@ -148,6 +148,7 @@ class Profile extends StatelessWidget {
       automaticallyImplyLeading: false,
       elevation: 10.0,
       shadowColor: Colors.black,
+      centerTitle: true,
       title: Text("Profil",
           style:
               GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),

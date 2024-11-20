@@ -44,11 +44,6 @@ class _KategoriPageState extends State<KategoriPage>
     super.initState();
     _tabController = TabController(length: _categories.length, vsync: this);
     _fetchNewsByCategory(_categories[0]); // Default: kategori pertama
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        _fetchNewsByCategory(_categories[_tabController.index]);
-      }
-    });
   }
 
   // Get data berdasarkan kategori
@@ -72,12 +67,14 @@ class _KategoriPageState extends State<KategoriPage>
       body: TabBarView(
         controller: _tabController,
         children: _categories.map((category) {
+          _fetchNewsByCategory(category);
           return FutureBuilder<List<NewsArticle>>(
             future: _newsArticles,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
                     child: CircularProgressIndicator(
+                    
                   color: Colors.blue,
                 ));
               } else if (snapshot.hasError) {
@@ -190,10 +187,7 @@ class _KategoriPageState extends State<KategoriPage>
         IconButton(
           icon: Icon(Icons.search),
           onPressed: () {
-            showSearch(
-              context: context, 
-              delegate: CustomSearchDelegate()
-              );
+            showSearch(context: context, delegate: CustomSearchDelegate());
           },
         )
       ],
@@ -204,6 +198,7 @@ class _KategoriPageState extends State<KategoriPage>
           fontWeight: FontWeight.w500,
         ),
       ),
+      centerTitle: true,
       elevation: 10.0,
       shadowColor: Colors.black,
       bottom: TabBar(

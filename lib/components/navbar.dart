@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:newpedia/pages/bookmark.dart';
 import 'package:newpedia/pages/homepage.dart';
 import 'package:newpedia/pages/kategori.dart';
 import 'package:newpedia/pages/profile.dart';
-import 'package:newpedia/pages/search.dart';
 
 class Nav extends StatefulWidget {
   const Nav({Key? key}) : super(key: key);
@@ -16,7 +16,6 @@ class _NavState extends State<Nav> {
   List<Widget> _widgetOptions = <Widget>[
     Homepage(),
     KategoriPage(),
-    SearchPage(),
     BookMark(),
     Profile(),
     //pakai text dulu kalo bisa pindah2
@@ -67,39 +66,41 @@ class _NavState extends State<Nav> {
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          // selectedItemColor: Colors.blue,
-          // unselectedItemColor: Colors.grey,
-          // type: BottomNavigationBarType.fixed,
-          // backgroundColor: Colors.white,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: _onItemTap,
+          destinations: const[
+            NavigationDestination(
               label: 'Home',
               icon: Icon(Icons.home_outlined),
+              selectedIcon: Icon(Icons.home),
             ),
-            BottomNavigationBarItem(
+            NavigationDestination(
               label: 'Kategori',
-              icon: Icon(Icons.public)
+              icon: Icon(Icons.public_outlined),
+              selectedIcon: Icon(Icons.public),
               ),
-            BottomNavigationBarItem(
-              label: 'Cari',
-              icon: Icon(Icons.search),
-            ),
-            BottomNavigationBarItem(
+           NavigationDestination(
                 label: 'Koleksi',
                 icon: Badge(
                     label: Text("3"),
                     backgroundColor: Colors.red,
                     child: Icon(
-                      Icons.bookmark_border,
-                    ))),
-            BottomNavigationBarItem(
+                      Icons.bookmark_border_outlined,
+                    )),
+                    selectedIcon: Badge(
+                    label: Text("3"),
+                    backgroundColor: Colors.red,
+                    child: Icon(
+                      Icons.bookmark,
+                    )),
+                    ),
+            NavigationDestination(
               label: 'Akun',
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person_outline),
+              selectedIcon: Icon(Icons.person),
             ),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTap,
+          ]
         ));
   }
 }
