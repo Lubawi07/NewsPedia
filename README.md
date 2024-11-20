@@ -1,16 +1,21 @@
 # NewsPedia
 
-A new Flutter project.
+## Installation
 
-## Getting Started
+Install my project with command prompt
 
-This project is a starting point for a Flutter application.
+```bash
+  github clone <my-project>
+  cd <my-project>
+  flutter pub get
+```
+Remember don't forget create folder first.
 
-A few resources to get you started if this is your first Flutter project:
+Choose the device to run the project in your code editor (vs code).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Run "flutter pub get" for download missing package in this project. After that run the project with 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+  flutter run
+```
+
